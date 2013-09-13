@@ -16,10 +16,8 @@ class State_Cover : public State
     return &instance;
   }
   virtual void Execute(Soldier *soldier){
-    if(soldier -> getBulletNumInMagazine() <= 0){
+      std::cout << "covering and reloading" << std::endl;
       soldier -> reloadBullet();
-      std::cout << "covering" << std::endl;
-    }
   }
 };
 
@@ -32,12 +30,10 @@ class State_Attack : public State
   }
 
   virtual void Execute(Soldier *soldier){
-    if(soldier -> getBulletNumInMagazine() > 0){
-      std::cout << "attacking" << std::endl;
-    }else{
-      State_Cover * state_cover = new State_Cover();
-      soldier -> ChangeState(state_cover);
-    }
+    int cost_buttlet = 1;
+    int temp = soldier -> getBulletNumInMagazine();
+    soldier -> setBulletNumInMagazine(temp - 5);
+    std::cout << "attacking " << soldier -> getBulletNumInMagazine() << std::endl;
   }
 };
 
@@ -62,9 +58,7 @@ class State_Wait : public State
   }
 
   virtual void Execute(Soldier *soldier){
-    if(soldier -> getBulletNumInPocket() <= 0){
       std::cout << "waiting" << std::endl;
-    }
   }
 };
 

@@ -2,8 +2,8 @@
 #include "BaseGameEntity.h"
 #include <iostream>
 Soldier::Soldier(int id):BaseGameEntity(id),
-                         m_iButtletInPocket(200),
-                         m_iBulletInMagazine(20),
+                         m_iButtletInPocket(20),
+                         m_iBulletInMagazine(10),
                          m_iFatigue(200),
                          m_pCurrentState(State_Patrol::Instance())
 {}
@@ -31,22 +31,24 @@ int Soldier::getBulletNumInPocket()
 
 void Soldier::reloadBullet()
 {
-
-  if(this -> m_iButtletInPocket - 10 >= 0){
+  std::cout << "pocket in " << m_iButtletInPocket << std::endl;
+  if(this -> m_iButtletInPocket - 10 > 0){
     this -> m_iButtletInPocket -= 10;
     this -> m_iBulletInMagazine += 10;
   }else{
-    this -> m_iButtletInPocket = 10;
     this -> m_iBulletInMagazine += this -> m_iButtletInPocket;
+    this -> m_iButtletInPocket = 0;
+
   }
+
 }
 
 void Soldier::setBulletNumInMagazine(int v)
 {
-  
+  this -> m_iBulletInMagazine = v;
 }
 void Soldier::setBulletNumInPocket(int v)
 {
-  
+  this -> m_iButtletInPocket = v;
 }
 
