@@ -64,7 +64,7 @@ public:
                 m_dDegress = (int)m_dDegress % 360;
             }else{
                 this -> setHeading(ccpRotateByAngle(m_vHeading, m_vPos, CC_DEGREES_TO_RADIANS(5)));
-                m_dDegress += -5;
+                m_dDegress -= 5;
                 m_dDegress = (int)m_dDegress % 360;
             }
             CCLOG("%f %f", t1, t2);

@@ -85,21 +85,7 @@ bool HelloWorld::init()
 }
 
 void  HelloWorld::UpdateWorld(float dt){
-    
-    if((m_SeekingSprite -> getVehicle() -> getVelocity()).x >= 1 ||
-       (m_SeekingSprite -> getVehicle() -> getVelocity()).y >= 1 ){
-        m_SeekingSprite -> getVehicle() -> Update(dt);
-        CCPoint tmpPos = m_SeekingSprite -> getVehicle() -> getPos();
-        CCPoint tmpRot = m_SeekingSprite -> getVehicle() -> getHeading();
-        double tmpDegress = m_SeekingSprite -> getVehicle() -> getDegress();
-        mHeading -> setPosition(tmpRot);
-        m_SeekingSprite -> setRotation(tmpDegress);
-        m_SeekingSprite -> setPosition(tmpPos);
-
-    }else{
-        
-        
-    }
+    m_SeekingSprite -> update(dt);
     
 }
 void HelloWorld::menuCloseCallback(CCObject* pSender)

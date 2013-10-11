@@ -19,8 +19,7 @@ public :
     virtual bool init();
     // 精灵所包含的运动体
     CC_SYNTHESIZE(Vehicle *, m_vVehicle, Vehicle);
-    
-
+    void update(float dt);
 private :
     // 设置动作体的运动行为
     SteeringBehaviors *m_sSteering;
