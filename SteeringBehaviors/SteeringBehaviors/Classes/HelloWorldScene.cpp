@@ -71,10 +71,7 @@ bool HelloWorld::init()
     targetSprite -> setAnchorPoint(ccp(0.5, 0.5));
     targetSprite -> setPosition(TARGETPOS);
     this -> addChild(targetSprite);
-    
-    mHeading = CCSprite::create("Icon-72.png");
-    mHeading -> setPosition(m_SeekingSprite -> getVehicle() -> getHeading());
-    this -> addChild(mHeading);
+   
     
     
     // add a label shows "Hello World"

@@ -29,7 +29,7 @@ class MovingEntity : public BaseGameEntity{
 public:
     MovingEntity(CCPoint pos):
     BaseGameEntity(pos),
-    m_vHeading(ccp(pos.x, pos.y + 50)),
+    m_vHeading(ccp(pos.x, pos.y + 1)),
     m_vVelocity(ccp(10, 0)),
     m_dMass(10),
     m_vSide(ccp(0, 10)),
@@ -55,7 +55,7 @@ public:
         double t1 = d2 / (y3 - y1);
         double t2 = (x3 - x2) / (y3 - y2);
 
-        if(isThreePointInALine(x1, y1, x2, y2, x3, y3) && d4 + d6 - d1 <= 0.05){
+        if(isThreePointInALine(x1, y1, x2, y2, x3, y3) && fabs(d4 + d6 - d1) <= 0.05){
             return  0;
         }else{
             if(t1 < t2){
