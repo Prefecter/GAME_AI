@@ -22,10 +22,10 @@ bool SeekSprite::init()
 }
 
 void SeekSprite::update(float dt){
-
     CCPoint pos = m_vVehicle -> getPos();
     double degress = this -> m_vVehicle -> getDegress();
+    m_vVehicle -> Update(dt);
     this -> setRotation(degress);
     this -> setPosition(pos);
-    m_vVehicle -> Update(dt);
+
 }

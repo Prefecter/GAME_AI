@@ -13,8 +13,8 @@ SteeringBehaviors::SteeringBehaviors(Vehicle *agent){
 }
 
 CCPoint SteeringBehaviors::Calculate(){
-    CCPoint tmpPos = TARGETPOS;
-//    m_vSteeringForce = ccp(0, 0);
+    CCPoint tmpPos = m_pVehicle -> getTarget();
+    m_vSteeringForce = ccp(0, 0);
     m_vSteeringForce = m_vSteeringForce + this -> Seek(tmpPos);
 //    m_vSteeringForce = this -> Seek(tmpPos);
 //    CCLOG("hello m_vSteeringForce %f %f", m_vSteeringForce.x, m_vSteeringForce.y);
@@ -33,6 +33,6 @@ CCPoint SteeringBehaviors::Calculate(){
 CCPoint SteeringBehaviors::Seek(CCPoint &TargetPos){
     CCPoint tmpPos1 = ccpMult(ccpNormalize(TargetPos), m_pVehicle -> getMaxForce());
     CCPoint tmpPos2 = ccpSub(tmpPos1, m_pVehicle -> getVelocity());
-    return tmpPos2;
+    return tmpPos1;
     
 }

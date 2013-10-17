@@ -953,8 +953,11 @@
 		7464CB3617E75BAC00B4E750 = {
 			isa = PBXGroup;
 			children = (
+				7464CB5317E75BAC00B4E750 /* Resources */,
+				7464CB6B17E75BAC00B4E750 /* ios */,
+				7464CB7417E75BAC00B4E750 /* libs */,
+				7464CEE117E75BB000B4E750 /* Supporting Files */,
 				742A8F881805158F00EB5A22 /* Classes */,
-				7464CB5217E75BAC00B4E750 /* SteeringBehaviors */,
 				7464CB4117E75BAC00B4E750 /* Frameworks */,
 				7464CB4017E75BAC00B4E750 /* Products */,
 			);
@@ -983,17 +986,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7464CB5217E75BAC00B4E750 /* SteeringBehaviors */ = {
-			isa = PBXGroup;
-			children = (
-				7464CB5317E75BAC00B4E750 /* Resources */,
-				7464CB6B17E75BAC00B4E750 /* ios */,
-				7464CB7417E75BAC00B4E750 /* libs */,
-				7464CEE117E75BB000B4E750 /* Supporting Files */,
-			);
-			path = SteeringBehaviors;
-			sourceTree = "<group>";
-		};
 		7464CB5317E75BAC00B4E750 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1011,6 +1003,7 @@
 				7464CB6A17E75BAC00B4E750 /* Info.plist */,
 			);
 			name = Resources;
+			path = SteeringBehaviors;
 			sourceTree = "<group>";
 		};
 		7464CB6B17E75BAC00B4E750 /* ios */ = {
@@ -1023,6 +1016,7 @@
 				7464CB7217E75BAC00B4E750 /* main.m */,
 			);
 			name = ios;
+			path = SteeringBehaviors;
 			sourceTree = "<group>";
 		};
 		7464CB7417E75BAC00B4E750 /* libs */ = {
@@ -1035,6 +1029,7 @@
 				7464CEDA17E75BB000B4E750 /* libwebsockets */,
 			);
 			name = libs;
+			path = SteeringBehaviors;
 			sourceTree = "<group>";
 		};
 		7464CB7517E75BAC00B4E750 /* cocos2dx */ = {
@@ -2141,6 +2136,7 @@
 				7464CEE217E75BB000B4E750 /* Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = SteeringBehaviors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -23,9 +23,11 @@ public:
     void Update(double time_elapsed);
     void Render();
     CC_SYNTHESIZE(SteeringBehaviors *, m_pSteering, Steering);
-    CC_SYNTHESIZE(CCPoint, m_vTarget, Target);
-    Vehicle(CCPoint pos, CCPoint targetPos):MovingEntity(pos),
-                         m_vTarget(targetPos){
+    CC_SYNTHESIZE(bool, m_bMoving, CanMoving);
+    Vehicle(CCPoint pos, CCPoint targetPos):
+    MovingEntity(pos, targetPos),
+    m_bMoving(false)
+    {
     }
 };
 

@@ -26,51 +26,36 @@ class MovingEntity : public BaseGameEntity{
     CC_SYNTHESIZE_PASS_BY_REF(double, m_dMass, Mass);
     CC_SYNTHESIZE_PASS_BY_REF(CCPoint, m_vSide, Side);
     CC_SYNTHESIZE_PASS_BY_REF(double, m_dDegress, Degress);
+    CC_SYNTHESIZE(CCPoint, m_vTarget, Target);
 public:
-    MovingEntity(CCPoint pos):
+    MovingEntity(CCPoint pos, CCPoint targetPos):
     BaseGameEntity(pos),
-    m_vHeading(ccp(pos.x, pos.y + 1)),
-    m_vVelocity(ccp(10, 0)),
+    m_vHeading(ccp(0, 4)),
+    m_vVelocity(ccpNormalize(m_vHeading)),
     m_dMass(10),
     m_vSide(ccp(0, 10)),
     m_dMaxSpeed(50.0),
     m_dMaxTurnRate(5),
-    m_dMaxForce(10.0),
-    m_dDegress(0)
+    m_dMaxForce(1.0),
+    m_dDegress(0),
+    m_vTarget(targetPos)
     {
         
     }
     virtual ~MovingEntity(){};
-    double isFaceToTheTarget(const CCPoint &target){
-        
+    double isFaceToTheTarget(){
         // 通过三角函数判断是否是面对
-        double d1 = ccpDistance(target, m_vPos);
-        double d2 = target.x - m_vPos.x;
-        double d3 = m_vHeading.x - m_vPos.x;
+        double d1 = ccpDistance(m_vTarget, m_vPos);
         double d4 = ccpDistance(m_vPos, m_vHeading);
-        double d6 = ccpDistance(target, m_vHeading);
+        double d6 = ccpDistance(m_vTarget, m_vHeading);
         double x1 = m_vPos.x, y1 = m_vPos.y;
         double x2 = m_vHeading.x, y2 = m_vHeading.y;
-        double x3 = target.x, y3 = target.y;
-        double t1 = d2 / (y3 - y1);
-        double t2 = (x3 - x2) / (y3 - y2);
+        double x3 = m_vTarget.x, y3 = m_vTarget.y;
 
-        if(isThreePointInALine(x1, y1, x2, y2, x3, y3) && fabs(d4 + d6 - d1) <= 0.05){
-            return  0;
-        }else{
-            if(t1 < t2){
-                this -> setHeading(ccpRotateByAngle(m_vHeading, m_vPos, CC_DEGREES_TO_RADIANS(-5)));
-                m_dDegress += 5;
-                m_dDegress = (int)m_dDegress % 360;
-            }else{
-                this -> setHeading(ccpRotateByAngle(m_vHeading, m_vPos, CC_DEGREES_TO_RADIANS(5)));
-                m_dDegress -= 5;
-                m_dDegress = (int)m_dDegress % 360;
-            }
-            CCLOG("%f %f", t1, t2);
+        if(isThreePointInALine(x1, y1, x2, y2, x3, y3) && fabs(d4 + d6 - d1) <= 0.1){
+            return  true;
         }
-        return m_dDegress;
-        
+        return false;
     };
     bool isThreePointInALine(double x1, double y1, double x2, double y2, double x3, double y3 ){
 
@@ -78,13 +63,27 @@ public:
         float d2 = sqrt((x1 - x3) * (x1 - x3) + (y1 - y3) * (y1 - y3));
         float d3 = sqrt((x2 - x3) * (x2 - x3) + (y2 - y3) * (y2 - y3));
         // 判断d1, d2, d3是否有两个值相加等于第三个值的情况
-        if ((fabs(d1 + d2 - d3) <=  0.05) ||
-            (fabs(d1 + d3 - d2) <= 0.05) ||
-            (fabs(d2 + d3 - d1) <=  0.05))
+        if ((fabs(d1 + d2 - d3) <= 0.1) ||
+            (fabs(d1 + d3 - d2) <= 0.1) ||
+            (fabs(d2 + d3 - d1) <= 0.1))
         {
             return true;
         }
         return false;
+    }
+    void FaceToTarget(){
+        float range = ccpDistance(m_vPos, m_vTarget);
+        float o = m_vTarget.x - m_vPos.x;
+        float a = m_vTarget.y - m_vPos.y;
+        float at= (float) CC_RADIANS_TO_DEGREES(atanf(o/a));
+        if(a < 0){
+            if(o < 0){
+                at = 180 + fabs(at);
+            }else{
+                at = 180 - fabs(at);
+            }
+        }
+        m_dDegress = at;
     }
 };
 #endif /* defined(__SteeringBehaviors__MovingEntity__) */

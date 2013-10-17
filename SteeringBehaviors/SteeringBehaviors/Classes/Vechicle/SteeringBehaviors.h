@@ -26,7 +26,7 @@ public:
     SteeringBehaviors(Vehicle *agent);
     virtual ~SteeringBehaviors(){};
     // 移动到目标位置
-    CCPoint Seek(CCPoint& pos);
+    CCPoint Seek(CCPoint &TargetPos);
 private:
     Vehicle *m_pVehicle;
 

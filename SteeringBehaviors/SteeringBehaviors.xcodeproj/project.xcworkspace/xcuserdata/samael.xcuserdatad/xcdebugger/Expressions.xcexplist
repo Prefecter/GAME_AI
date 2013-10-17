@@ -8,6 +8,20 @@
             <PersistentString
                value = "m_vPos">
             </PersistentString>
+            <PersistentString
+               value = "SteeringForce">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MovingEntity::FaceToTarget():MovingEntity.h">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_vHeading">
+            </PersistentString>
+            <PersistentString
+               value = "m_dDegress">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
    </ContextStates>

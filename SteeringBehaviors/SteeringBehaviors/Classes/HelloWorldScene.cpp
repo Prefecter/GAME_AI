@@ -82,7 +82,14 @@ bool HelloWorld::init()
 }
 
 void  HelloWorld::UpdateWorld(float dt){
-    m_SeekingSprite -> update(dt);
+    CCPoint target = m_SeekingSprite -> getVehicle() -> getTarget();
+    CCPoint pos = m_SeekingSprite -> getVehicle() -> getPos();
+    if(fabs(target.x - pos.x) <= 0.05 &&
+       fabs(target.y - pos.y) <= 0.05){
+        this -> unscheduleAllSelectors();
+    }else{
+        m_SeekingSprite -> update(dt);
+    }
     
 }
 void HelloWorld::menuCloseCallback(CCObject* pSender)
@@ -124,7 +131,7 @@ void HelloWorld::registerWithTouchDispatcher(){
 
 void HelloWorld::draw(){
     CCNode *tmpSprite = this -> getChildByTag(618);
-    ccDrawLine(m_SeekingSprite -> getVehicle() -> getHeading(), tmpSprite -> getPosition());
+
     ccDrawLine(m_SeekingSprite -> getVehicle() -> getPos(), tmpSprite -> getPosition());
     // 画坐标轴的两条线
     ccDrawLine(ccp(10, 10), ccp(800, 10));
